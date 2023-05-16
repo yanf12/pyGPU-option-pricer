@@ -27,8 +27,8 @@ class GPUpricer(object):
         self.N_PATHS = N_PATHS
         self.d_s = np.zeros(N_PATHS, dtype=np.float32) # Stores the result of each path
 
-    def _get_normal_paths(self):
-        self.normals = np.random.normal(0, 1, self.N_STEPS * self.N_PATHS).astype(np.float32)
+    # def _get_normal_paths(self):
+    #     self.normals = np.random.normal(0, 1, self.N_STEPS * self.N_PATHS).astype(np.float32)
 
     @staticmethod
     @cuda.jit
@@ -61,7 +61,7 @@ class GPUpricer(object):
 
 if __name__=="__main__":
     T, K, S0, sigma, mu, r = 1.0, 110.0, 120.0, 0.35, 0.05, 0.05
-    N_STEPS, N_PATHS = 360, 10000000
+    N_STEPS, N_PATHS = 360, 50000000
     vanilla_example = GPUpricer(T, K, S0, sigma, mu, r, N_STEPS, N_PATHS)
     print(vanilla_example.simulate())
 
